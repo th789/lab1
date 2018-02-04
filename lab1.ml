@@ -233,10 +233,7 @@ let zip (x : int list) (y : int list) : (int * int) list =
   match x, y with
   |[], [] -> []
   |xhd :: xtl, yhd :: ytl -> (xhd, yhd) :: zip xtl ytl
-  |_, _ -> raise (Invalid_argument "mismatched list length")
-
-
-;;
+  |_, _ -> raise (Invalid_argument "mismatched list length") ;;
 
 (*.....................................................................
 Exercise 10: Recall the definition of the function prods from lecture
@@ -267,7 +264,7 @@ let rec prods (lst : (int * int) list) : int list =
   | (x, y) :: tail -> (x * y) :: (prods tail) ;;
 
 let dotprod (a : int list) (b : int list) : int =
-  sum prod zip a b ;;
+  sum (prod (zip a b)) ;;
 
 (*======================================================================
 Part 4: High-order functional programming with map, filter, and fold
