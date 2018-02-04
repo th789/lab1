@@ -225,10 +225,18 @@ raise an error.  For example, zip [1;2;3] [4;5;6] should evaluate to
 To think about: Why wouldn't it be possible, in cases of mismatched
 length lists, to just pad the shorter list with, say, false values, so
 that, zip [1] [2; 3; 4] = [(1, 2); (false, 3); (false, 4)]?
+BECAUSE LISTS HAVE TO CONTAIN THE SAME VALUES AND (int * int) IS NOT THE SAME
+AS (bool * int)
 ......................................................................*)
 
 let zip (x : int list) (y : int list) : (int * int) list =
-  failwith "zip not implemented" ;;
+  match x, y with
+  |[], [] -> []
+  |xhd :: xtl, yhd :: ytl -> (xhd, yhd) :: zip xtl ytl
+  |_, _ -> raise (Invalid_argument "mismatched list length")
+
+
+;;
 
 (*.....................................................................
 Exercise 10: Recall the definition of the function prods from lecture
@@ -259,7 +267,7 @@ let rec prods (lst : (int * int) list) : int list =
   | (x, y) :: tail -> (x * y) :: (prods tail) ;;
 
 let dotprod (a : int list) (b : int list) : int =
-  failwith "dotprod not implemented" ;;
+  sum prod zip a b ;;
 
 (*======================================================================
 Part 4: High-order functional programming with map, filter, and fold
