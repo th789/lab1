@@ -1,7 +1,7 @@
 (*
-			      CS51 Lab 1
-		     Basic Functional Programming
-			     Spring 2017
+            CS51 Lab 1
+         Basic Functional Programming
+           Spring 2017
 Objective:
 
 This lab is intended to get you up and running with the course's
@@ -99,7 +99,7 @@ appropriate OCaml expression to assign the value to the variable
 exercise1 below.
 ......................................................................*)
 
-let exercise3 () = 0 - (5 - 3) ;;
+let exercise3 () = failwith "exercise3 not implemented" ;;
 
 (* Hint: The OCaml concrete expression
 
@@ -111,19 +111,7 @@ does *not* correspond to the abstract syntax above.
 Exercise 4: Draw the tree that the concrete syntax "- 5 - 3" does
 correspond to. Check it with a member of the course staff if you'd
 like.
-
-      -
-      ^
-     / \
-    /   \
-   -     3
-  |
-  |
-  5
 ......................................................................*)
-
-
-
 
 
 (*======================================================================
@@ -136,22 +124,24 @@ expressions below? Test your solution by uncommenting the examples
 error is generated.
 ......................................................................*)
 
+(*   <--- remove this start of comment line
 
-let exercise5a : int = 42 ;;
+let exercise5a : ??? = 42 ;;
 
-let exercise5b : string =
+let exercise5b : ??? =
   let greet y = "Hello " ^ y
   in greet "World!";;
 
-let exercise5c : int*float -> int  =
+let exercise5c : ???  =
   fun (x, y) -> x + int_of_float y ;;
 
-let exercise5d : int -> bool =
+let exercise5d : ??? =
   fun x -> x < x + 1 ;;
 
-let exercise5e : bool -> bool list =
+let exercise5e : ??? =
   fun x -> if x then [x] else [] ;;
 
+remove this end of comment line too ----> *)
 
 (*======================================================================
 Part 3: First-order functional programming
@@ -180,25 +170,18 @@ to the list containing the elements 3, 4, and 5? You'll want to
 replace the "[]" with the correct functional call.
 ......................................................................*)
 
-let rec square_all (lst : int list) : int list =
-  match lst with
-   | [] -> []
-   | head :: tail -> head*head :: square_all tail ;;
+let square_all (lst : int list) : int list =
+  failwith "square_all not implemented" ;;
 
-let exercise6 = square_all [3; 4; 5] ;;
+let exercise6 = [] ;;
 
 (*......................................................................
 Exercise 7: Define a recursive function that sums an integer
 list. (What's a sensible return value for the empty list?)
 ......................................................................*)
 
-let rec sum (lst : int list) : int =
-  match lst with
-    | [] -> 0
-    | head :: tail -> head + sum tail ;;
-
-let exercise7 = sum [3; 4; 5] ;;
-
+let sum (lst : int list) : int =
+  failwith "sum not implemented" ;;
 
 (*......................................................................
 Exercise 8: Define a recursive function that returns the maximum
@@ -207,13 +190,8 @@ can raise an appropriate exception -- a Match_failure or
 Invalid_argument exception for instance.
 ......................................................................*)
 
-let rec max_list (lst : int list) : int =
-  match lst with
-    | [] -> raise (Invalid_argument "empty list")
-    | [x] -> x
-    | head :: tail -> if head > max_list tail then head else max_list tail;;
-
-let exercise8 = max_list [3; 4; 5] ;;
+let max_list (lst : int list) : int =
+  failwith "max_list not implemented" ;;
 
 (*......................................................................
 Exercise 9: Define a function zip, that takes two int lists and
@@ -225,15 +203,10 @@ raise an error.  For example, zip [1;2;3] [4;5;6] should evaluate to
 To think about: Why wouldn't it be possible, in cases of mismatched
 length lists, to just pad the shorter list with, say, false values, so
 that, zip [1] [2; 3; 4] = [(1, 2); (false, 3); (false, 4)]?
-BECAUSE LISTS HAVE TO CONTAIN THE SAME VALUES AND (int * int) IS NOT THE SAME
-AS (bool * int)
 ......................................................................*)
 
-let rec zip (x : int list) (y : int list) : (int * int) list =
-  match x, y with
-  | [], [] -> []
-  | xhd :: xtl, yhd :: ytl -> (xhd, yhd) :: (zip xtl ytl)
-  | _, _ -> raise (Invalid_argument "zip mismatched length lists") ;;
+let zip (x : int list) (y : int list) : (int * int) list =
+  failwith "zip not implemented" ;;
 
 (*.....................................................................
 Exercise 10: Recall the definition of the function prods from lecture
@@ -264,7 +237,7 @@ let rec prods (lst : (int * int) list) : int list =
   | (x, y) :: tail -> (x * y) :: (prods tail) ;;
 
 let dotprod (a : int list) (b : int list) : int =
-  sum (prods (zip a b)) ;;
+  failwith "dotprod not implemented" ;;
 
 (*======================================================================
 Part 4: High-order functional programming with map, filter, and fold
